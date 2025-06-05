@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="a5f194b2-6577-4f35-ad0b-7f91d611f664" >
+		<http:listener-connection host="0.0.0.0" port="${http.port}" />
+	</http:listener-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="c7b83129-8cde-4111-967a-70c1e6088e59" file="config\dev.yaml" />
+	<flow name="hello-mule-apiFlow" doc:id="67a795c2-1be0-4db9-9be5-f0f19a331843" >
+		<http:listener doc:name="Listener" doc:id="78ed8be7-b7ad-4d9d-befb-2c0efe69d67f" config-ref="HTTP_Listener_config" path="hello"/>
+		<set-variable value='#["hello"]' doc:name="Set Variable" doc:id="738fb7d9-cb3d-4530-9109-cbcd08ba3415" variableName="name"/>
+	</flow>
+</mule>
